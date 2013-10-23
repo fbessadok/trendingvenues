@@ -24,25 +24,19 @@ object Application extends Controller {
   implicit val writeVenueAsJson = Json.writes[Venue]
 
   def trending(lat: Double, lng: Double, oauth_token: String) = Action {
-    val asJson: Enumeratee[Venue,JsValue] = Enumeratee.map { 
-      case t => Json.toJson(t)
-    }
     Async {
-      Venue.fetchPage(lat, lng, oauth_token).map { case json => Ok(json &> asJson &> EvenSource()) } 
+      Venue.searchVenue(lat, lng, oauth_token).map {
+        case v => Ok(Json.toJson(v))
+      }
     }
   }
 
   case class Venue(id: String, name: String, lat: Double, lng: Double, hereNow: Int)
-
+  
   object Venue {
-    def search(lat: Double, lng: Double, oauth_token: String): Enumerator[Venue] = {
       
-      ???
-      
-    }
-
     implicit def convertVenue: Reads[Seq[Venue]] =
-      (__ \ "response").read(
+      (__ \ "response" \ "venues").read(
         seq(
           (__ \ "id").read[String] and
           (__ \ "name").read[String] and
@@ -61,13 +55,13 @@ object Application extends Controller {
         }
       )
 
-    def fetchPage(lat: Double, lng: Double, oauth_token: String): Future[Seq[Venue]] = {
+    def searchVenue(lat: Double, lng: Double, oauth_token: String): Future[Seq[Venue]] = {
       WS.url("https://api.foursquare.com/v2/venues/trending").withQueryString(
         "ll" -> (lat.toString + "," + lng.toString),
         "limit" -> "50",
         "radius" -> "2000",
         "oauth_token" -> oauth_token,
-        "v" -> "20131022"
+        "v" -> "20131024"
       ).get().map(
         r => r.status match {
           case 200 => r.json.asOpt[Seq[Venue]].getOrElse(Nil)
