@@ -1,25 +1,57 @@
-function load() {
+var map;
+var markers = [];
+
+function addMarkerLatLng(lat, lng, name) {
+  var location = new google.maps.LatLng(lat, lng);
+  addMarker(location, name)
+}
+
+function addMarker(location, name) {
+  var marker = new google.maps.Marker({
+    position: location,
+    map: map,
+    title: name
+  });
+  markers.push(marker);
+}
+
+function setAllMap(map) {
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setMap(map);
+  }
+}
+
+function clearMarkers() {
+  setAllMap(null);
+}
+
+function showMarkers() {
+  setAllMap(map);
+}
+
+function deleteMarkers() {
+  clearMarkers();
+  markers = [];
+}
+
+function initMap() {
   var myOptions = {
-      center: new google.maps.LatLng(37.789404, -122.401042), // TypeSafe coordinate in San Francisco
-      zoom: 15,
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-      mapTypeControl: true,
-      scaleControl: true,
-      overviewMapControl: true,
-      overviewMapControlOptions: {
-        opened: true
-      }
+    center: new google.maps.LatLng(37.789404, -122.401042), // TypeSafe coordinate in San Francisco
+    zoom: 14,
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    mapTypeControl: true,
+    scaleControl: true,
+    overviewMapControl: true,
+    overviewMapControlOptions: {
+      opened: true
+    }
   }
   
-  var map = new google.maps.Map(document.getElementById('map'), myOptions);
+  map = new google.maps.Map(document.getElementById('map'), myOptions);
   
   var center = new google.maps.LatLng(37.789404, -122.401042);
   
-  var marker = new google.maps.Marker({
-      position: center,
-      map: map,
-      title: "Center"
-  });
+  addMarker(center, "Center");
   
   search(center.lat(), center.lng());
   
@@ -37,13 +69,9 @@ function load() {
   // End Google Map Issue
   
   google.maps.event.addListener(map, 'center_changed', function() {
-    marker.setMap(null);
+    deleteMarkers();
     center = map.getCenter();
-    marker = new google.maps.Marker({
-      position: center,
-      map: map,
-      title: "Center"
-    });
+    addMarker(center, "Center");
     scheduleDelayedCallback();
   });
 }

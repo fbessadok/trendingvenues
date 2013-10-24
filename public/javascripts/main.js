@@ -6,7 +6,8 @@ function search(lat, lng) {
     function(data) {
       $("#venues").empty();
       for (venue in data) {
-        $("#venues").append($('<li>').append(data[venue].name + " : [" + data[venue].lat + "," + data[venue].lng + "] - Here now " + data[venue].hereNow));
+        $("#venues").append($('<li>').append(data[venue].name + " - Here now " + data[venue].hereNow));
+        addMarkerLatLng(data[venue].lat, data[venue].lng, data[venue].name);
       }
     }
   );
