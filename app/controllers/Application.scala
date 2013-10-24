@@ -3,15 +3,11 @@ package controllers
 import scala.concurrent._
 import ExecutionContext.Implicits.global
 
-import play.api.libs.iteratee._
-
 import play.api._
 import play.api.mvc._
-import play.api.libs._
 import play.api.libs.ws._
 
 import play.api.libs.json._
-import play.api.libs.functional._
 import play.api.libs.functional.syntax._
 import play.api.libs.json.Reads._
 
