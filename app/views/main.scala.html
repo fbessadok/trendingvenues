@@ -5,8 +5,8 @@
 <html>
 <head>
   <title>@title</title>
+  <link rel="stylesheet" media="screen" href="@routes.Assets.at("libs/ink/css/ink-min.css")">
   <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
-  <link rel="stylesheet" media="screen" href="@routes.Assets.at("libs/semantic/css/semantic.min.css")">
 </head>
 <body>
   @content
@@ -14,7 +14,7 @@
   <script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
   <script src="@routes.Assets.at("javascripts/main.js")" type="text/javascript"></script>
   <script src="@routes.Assets.at("javascripts/geo.js")" type="text/javascript"></script>
-  <script type="text/javascript" src="@routes.Assets.at("libs/semantic/javascript/semantic.min.js")"></script>
+  <script type="text/javascript" src="@routes.Assets.at("libs/ink/js/ink-all.min.js")"></script>
   <script>
     $( document ).ready(function() {
       initMap();

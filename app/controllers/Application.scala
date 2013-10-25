@@ -21,10 +21,14 @@ object Application extends Controller {
   }
   
   def post = Action { request =>
-    val lat = request.body.asFormUrlEncoded.get("lat")(0)
-    val lng = request.body.asFormUrlEncoded.get("lng")(0)
+    val lat = request.body.asFormUrlEncoded.get("lat")(0).toDouble
+    val lng = request.body.asFormUrlEncoded.get("lng")(0).toDouble
     val oauth_token = request.body.asFormUrlEncoded.get("oauth_token")(0)
-    Redirect(routes.Application.trending(lat.toDouble, lng.toDouble, oauth_token))
+    Async {
+      Venue.searchVenue(lat, lng, oauth_token).map {
+        case v => Ok(Json.toJson(v))
+      }
+    }
   }
   
   implicit val writeVenueAsJson = Json.writes[Venue]
