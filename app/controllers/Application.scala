@@ -33,14 +33,6 @@ object Application extends Controller {
   
   implicit val writeVenueAsJson = Json.writes[Venue]
 
-  def trending(lat: Double, lng: Double, oauth_token: String) = Action {
-    Async {
-      Venue.searchVenue(lat, lng, oauth_token).map {
-        case v => Ok(Json.toJson(v))
-      }
-    }
-  }
-
   case class Venue(id: String, name: String, lat: Double, lng: Double, hereNow: Int)
   
   object Venue {
