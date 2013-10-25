@@ -1,3 +1,5 @@
+@import "lib.less";
+
 html, body, .ink-grid {
   margin: 0;
   padding: 0;
@@ -19,7 +21,24 @@ html, body, .ink-grid {
   overflow: auto;
   
   ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
     overflow: visible;
+    
+    li {
+      .border-radius(2px);
+      .box-shadow(0, 1px, 3px, 221, 221, 221, 1);
+      border: 1px solid #DDD;
+      background-color: #FFF;
+      padding: 0.5em 1em;
+      margin: 10px;
+      
+      &:hover {
+        border: 1px solid #4a9b17;
+        .box-shadow(0, 1px, 3px, 74, 155, 23, 0.2);
+      }
+    }
   }
   
   h3 {
@@ -33,7 +52,7 @@ html, body, .ink-grid {
   width: 100%;
   height: 100%;
   
-  // Correct the display of all controls inside the google map widget
+  // Correct the display of all controls inside the google maps widget
   * {
     max-width: none;
     max-height: none;

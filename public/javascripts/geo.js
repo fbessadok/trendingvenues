@@ -1,16 +1,19 @@
 var map;
 var markers = [];
+var cross = 'assets/images/cross.png';
 
 function addMarkerLatLng(lat, lng, name) {
   var location = new google.maps.LatLng(lat, lng);
-  addMarker(location, name)
+  addMarker(location, name, '', google.maps.Marker.MAX_ZINDEX)
 }
 
-function addMarker(location, name) {
+function addMarker(location, name, image, zindex) {
   var marker = new google.maps.Marker({
     position: location,
+    icon: image,
     map: map,
-    title: name
+    title: name,
+    zIndex: zindex
   });
   markers.push(marker);
 }
@@ -51,7 +54,7 @@ function initMap() {
   
   var center = new google.maps.LatLng(37.789404, -122.401042);
   
-  addMarker(center, "Center");
+  addMarker(center, '', cross, google.maps.Marker.MAX_ZINDEX + 1);
   
   search(center.lat(), center.lng());
   
@@ -71,7 +74,7 @@ function initMap() {
   google.maps.event.addListener(map, 'center_changed', function() {
     deleteMarkers();
     center = map.getCenter();
-    addMarker(center, "Center");
+    addMarker(center, '', cross, google.maps.Marker.MAX_ZINDEX + 1);
     scheduleDelayedCallback();
   });
 }
