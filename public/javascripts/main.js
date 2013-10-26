@@ -21,6 +21,6 @@ function search(lat, lng) {
   );
 }
 
-function fixHeight() {
+function adjustHeight() {
   $(".ink-grid").css("padding-bottom", $("#topbar").outerHeight(true));
 }
