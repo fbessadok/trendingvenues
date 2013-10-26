@@ -56,8 +56,6 @@ function initMap() {
   
   addMarker(center, '', cross, google.maps.Marker.MAX_ZINDEX + 1);
   
-  search(center.lat(), center.lng());
-  
   // Google Map Issue https://code.google.com/p/gmaps-api-issues/issues/detail?id=1371
   function fireIfLastEvent() {
     if (lastEvent.getTime() + 500 <= new Date().getTime()) {
@@ -77,4 +75,6 @@ function initMap() {
     addMarker(center, '', cross, google.maps.Marker.MAX_ZINDEX + 1);
     scheduleDelayedCallback();
   });
+  
+  search(center.lat(), center.lng());
 }

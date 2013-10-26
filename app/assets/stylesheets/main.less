@@ -6,11 +6,27 @@ html, body, .ink-grid {
   height: 100%;
   width: 100%;
   max-width: 100%;
+}
+
+.ohidden {
   overflow: hidden;
+}
+
+.about.box {
+  margin-top: 10px;
+}
+
+.box {
+  .border-radius(2px);
+  .box-shadow(0, 1px, 3px, 221, 221, 221, 1);
+  border: 1px solid #DDD;
+  background-color: #FFF;
+  padding: 0.5em 1em;
 }
 
 .column-group {
   height: 100%;
+  margin: 0;
   
   .column {
     height: 100%;
@@ -23,15 +39,9 @@ html, body, .ink-grid {
   ul {
     margin: 0;
     padding: 0;
-    list-style-type: none;
-    overflow: visible;
+    overflow: auto;
     
     li {
-      .border-radius(2px);
-      .box-shadow(0, 1px, 3px, 221, 221, 221, 1);
-      border: 1px solid #DDD;
-      background-color: #FFF;
-      padding: 0.5em 1em;
       margin: 10px;
       
       &:hover {

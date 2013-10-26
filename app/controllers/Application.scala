@@ -20,6 +20,10 @@ object Application extends Controller {
     Ok(views.html.index())
   }
   
+  def about = Action {
+    Ok(views.html.about())
+  }
+  
   def post = Action { request =>
     val lat = request.body.asFormUrlEncoded.get("lat")(0).toDouble
     val lng = request.body.asFormUrlEncoded.get("lng")(0).toDouble

@@ -7,7 +7,7 @@ function search(lat, lng) {
       $("#venues").empty();
       for (venue in data) {
         $("#venues").append(
-          $('<li>').append(
+          $('<li class="box">').append(
             $('<address>').append('<span class="push-right small tooltip" data-tip-text="' + data[venue].hereNow + ' people here right now" data-tip-color="blue">' + data[venue].hereNow + '</span>').append(
               $('<h6>').append(data[venue].name)
             )
@@ -21,4 +21,8 @@ function search(lat, lng) {
       });
     }
   );
+}
+
+function fixHeight() {
+  $(".ink-grid").css("padding-bottom", $("#topbar").outerHeight(true));
 }
