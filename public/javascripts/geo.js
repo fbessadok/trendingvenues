@@ -10,10 +10,10 @@ function addMarkerLatLng(lat, lng, name) {
 function addMarker(location, name, image, zindex) {
   var marker = new google.maps.Marker({
     position: location,
-    icon: image,
-    map: map,
     title: name,
-    zIndex: zindex
+    icon: image,
+    zIndex: zindex,
+    map: map
   });
   markers.push(marker);
 }
@@ -24,16 +24,8 @@ function setAllMap(map) {
   }
 }
 
-function clearMarkers() {
-  setAllMap(null);
-}
-
-function showMarkers() {
-  setAllMap(map);
-}
-
 function deleteMarkers() {
-  clearMarkers();
+  setAllMap(null);
   markers = [];
 }
 
@@ -54,6 +46,7 @@ function initMap() {
   
   var center = new google.maps.LatLng(37.789404, -122.401042);
   
+  // marker always on top of the others
   addMarker(center, '', cross, google.maps.Marker.MAX_ZINDEX + 1);
   
   // Google Map Issue https://code.google.com/p/gmaps-api-issues/issues/detail?id=1371

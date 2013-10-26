@@ -49,7 +49,9 @@ object Venue {
     ).get().map(
       r => r.status match {
         case 200 => r.json.asOpt[Seq[Venue]].getOrElse(Nil)
-        case e => sys.error(s"Bad response. Status $e")
+        case e => sys.error(s"Bad response. Status $e") // Usually 500 error status: rate limit exceeded
+        // TODO implement authentication to get 500 requests per hour per user and fallback to foursquare application when these 500 r/h are exceeded
+        // Foursquare apps have 5000 requests per hour.
       }
     )
   }
