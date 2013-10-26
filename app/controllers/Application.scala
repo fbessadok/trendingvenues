@@ -11,9 +11,6 @@ import play.api.libs.json._
 import play.api.libs.functional.syntax._
 import play.api.libs.json.Reads._
 
-import java.util.Calendar
-import java.text.SimpleDateFormat
-
 object Application extends Controller {
 
   def index = Action {
@@ -27,9 +24,8 @@ object Application extends Controller {
   def post = Action { request =>
     val lat = request.body.asFormUrlEncoded.get("lat")(0).toDouble
     val lng = request.body.asFormUrlEncoded.get("lng")(0).toDouble
-    val oauth_token = request.body.asFormUrlEncoded.get("oauth_token")(0)
     Async {
-      Venue.searchVenue(lat, lng, oauth_token).map {
+      Venue.searchVenue(lat, lng).map {
         case v => Ok(Json.toJson(v))
       }
     }
@@ -40,7 +36,7 @@ object Application extends Controller {
   case class Venue(id: String, name: String, address: String, city: String, lat: Double, lng: Double, hereNow: Int)
   
   object Venue {
-      
+    
     implicit def convertVenue: Reads[Seq[Venue]] =
       (__ \ "response" \ "venues").read(
         seq(
@@ -63,17 +59,18 @@ object Application extends Controller {
         }
       )
 
-    def searchVenue(lat: Double, lng: Double, oauth_token: String): Future[Seq[Venue]] = {
-      val today = Calendar.getInstance().getTime()
-      val datePattern = new SimpleDateFormat("yyyyMMdd")
-      val todayString = datePattern.format(today)
-      
+    val client_id = "X"
+    val client_secret = "X"
+    val foursquare_version = "20131026"
+    
+    def searchVenue(lat: Double, lng: Double): Future[Seq[Venue]] = {
       WS.url("https://api.foursquare.com/v2/venues/trending").withQueryString(
         "ll" -> (lat.toString + "," + lng.toString),
         "limit" -> "50",
         "radius" -> "2000",
-        "oauth_token" -> oauth_token,
-        "v" -> todayString
+        "client_id" -> client_id,
+        "client_secret" -> client_secret,
+        "v" -> foursquare_version
       ).get().map(
         r => r.status match {
           case 200 => r.json.asOpt[Seq[Venue]].getOrElse(Nil)

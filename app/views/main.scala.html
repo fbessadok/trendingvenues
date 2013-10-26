@@ -1,7 +1,5 @@
 @(title: String, overflow_hidden: Boolean = false, description: String = "Trending Venues shows on a map all the venues that are trending in real time in a specific place using Foursquare API. Trending Venues is an application built with Play Framework (Scala), Ink framework, Foursquare API, Google Maps API v3 and jQuery 1.9.0")(content: Html)
-
 <!DOCTYPE html>
-
 <html>
 <head>
   <title>@title</title>
@@ -21,8 +19,7 @@
        <ul class="horizontal black shadowed menu">
           <li><a href="/"><i class="icon-globe"></i> Trending Venues</a></li>
           <li><a href="/about">about</a></li>
-          <li class="push-right"><a href="https://github.com/fbessadok" target="_blank"><i class="icon-github"></i> fork on github</a></li>
-          <li class="push-right"><button class="ink-button blue"><i class="icon-foursquare"></i> Try it now!</button></li>
+          <li class="push-right"><button onclick="window.location.href='https://github.com/fbessadok'" class="ink-button blue"><i class="icon-github"></i> fork on github</button></li>
        </ul>
     </nav>
   </div>

@@ -1,8 +1,6 @@
-var foursquare_oauth_token = '';
-
 function search(lat, lng) {
   $.post('/search',
-    {'lat':lat, 'lng':lng, 'oauth_token':foursquare_oauth_token},
+    {'lat':lat, 'lng':lng},
     function(data) {
       $("#venues").empty();
       for (venue in data) {
