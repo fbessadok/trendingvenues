@@ -16,6 +16,11 @@ Trending Venues is built on top of
 # Live Demo
 
 A demo is hosted here, try it! :)
+http://obscure-plateau-1268.herokuapp.com/
+
+# Configuration
+
+In order to run Trending Venues yourself you need to create a [foursquare app](https://fr.foursquare.com/developers/apps) and to fill the *client_id* and *client_secret* in **Venue.scala** with the ones from the app you just created.
 
 # TODO
 
