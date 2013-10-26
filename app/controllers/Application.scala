@@ -33,7 +33,7 @@ object Application extends Controller {
   
   implicit val writeVenueAsJson = Json.writes[Venue]
 
-  case class Venue(id: String, name: String, lat: Double, lng: Double, hereNow: Int)
+  case class Venue(id: String, name: String, address: String, city: String, lat: Double, lng: Double, hereNow: Int)
   
   object Venue {
       
@@ -43,6 +43,8 @@ object Application extends Controller {
           (__ \ "id").read[String] and
           (__ \ "name").read[String] and
           (__ \ "location").read(
+            (__ \ "address").read[String] and
+            (__ \ "city").read[String] and
             (__ \ "lat").read[Double] and
             (__ \ "lng").read[Double] tupled
           ) and
@@ -53,7 +55,7 @@ object Application extends Controller {
         )
       ).map(
         _.collect {
-          case (id, name, (lat, lng), hereNow) => Venue(id, name, lat, lng, hereNow)
+          case (id, name, (address, city, lat, lng), hereNow) => Venue(id, name, address, city, lat, lng, hereNow)
         }
       )
 
