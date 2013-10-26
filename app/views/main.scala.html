@@ -2,6 +2,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
   <title>@title</title>
   
   <meta name="author" content="Firas Bessadok">
@@ -32,10 +34,12 @@
   @* Get Google Maps v3 api *@
   <script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
   
+  @* Get Ink js *@
+  <script src="@routes.Assets.at("libs/ink/js/ink-all.min.js")" type="text/javascript"></script>
+  
   @* Lazy loads local js files *@
-  <script defer src="@routes.Assets.at("javascripts/main.js")" type="text/javascript"></script>
-  <script defer src="@routes.Assets.at("javascripts/geo.js")" type="text/javascript"></script>
-  <script defer src="@routes.Assets.at("libs/ink/js/ink-all.min.js")" type="text/javascript"></script>
+  <script src="@routes.Assets.at("javascripts/main.js")" type="text/javascript"></script>
+  <script src="@routes.Assets.at("javascripts/geo.js")" type="text/javascript"></script>
 
   @* End script loading *@
   
@@ -47,5 +51,7 @@
     });
     //-->
   </script>
+  
+  @* You can insert Google Analytics tag here *@
 </body>
 </html>
