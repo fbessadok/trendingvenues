@@ -2,6 +2,8 @@
 
 The **Trending Venues** service helps you discover places around you that trends right now in social media communities.
 
+[![Build Status](https://travis-ci.org/fbessadok/trendingvenues.png?branch=master)](https://travis-ci.org/fbessadok/trendingvenues)
+
 This little project was inspired by TweetsGallery from [Guillaume Bort](https://github.com/guillaumebort/devoxxfr2013) and [Sadek Drobi](https://gist.github.com/sadache/5792650) and by [gmaptools](https://github.com/janosgyerik/gmaptools) by Janos Gyerik.
 
 Trending Venues is built on top of
