@@ -21,14 +21,12 @@ object Application extends Controller {
   
   implicit val writeVenueAsJson = Json.writes[Venue]
   
-  def post = Action { request =>
+  def post = Action.async { request =>
     val lat = request.body.asFormUrlEncoded.get("lat")(0)
     val lng = request.body.asFormUrlEncoded.get("lng")(0)
 
-    Async {
-      Venue.trending(lat, lng).map {
-        case v => Ok(Json.toJson(v))
-      }
+    Venue.trending(lat, lng).map {
+      case v => Ok(Json.toJson(v))
     }
   }
 }
