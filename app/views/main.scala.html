@@ -1,4 +1,4 @@
-@(title: String, overflow_hidden: Boolean = false, description: String = "Trending Venues shows on a map all the venues that are trending in real time in a specific place using Foursquare API. Trending Venues is an application built with Play Framework (Scala), Ink framework, Foursquare API, Google Maps API v3 and jQuery 1.9.0")(content: Html)
+@(title: String, overflow_hidden: Boolean = false, description: String = "Trending Venues shows on a map all the venues that are trending in real time in a specific place using Foursquare API. Trending Venues is an application built with Play Framework (Scala), Ink framework, Foursquare API, Google Maps API v3 and jQuery 1.9.0")(content: Html, jquery: Html = Html(""))
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,8 +46,7 @@
   <script type="text/javascript">
     <!--
     $( document ).ready(function() {
-      initMap();
-      adjustHeight();
+      @jquery
     });
     //-->
   </script>

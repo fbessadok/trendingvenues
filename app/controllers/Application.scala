@@ -7,12 +7,14 @@ import play.api._
 import play.api.mvc._
 import play.api.libs.json._
 
-import trending.util.Venue
+import trending.util._
 
 object Application extends Controller {
 
-  def index = Action {
-    Ok(views.html.index())
+  def index = Action.async { request =>
+    Location.getCoordinates(request.remoteAddress).map {
+      case (lat: Double, lng: Double) => Ok(views.html.index(lat, lng))
+    }
   }
   
   def about = Action {

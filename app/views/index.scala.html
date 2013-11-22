@@ -1,4 +1,6 @@
-@main(title = "Trending Venues", overflow_hidden = true) {
+@(lat: Double, lng: Double)
+
+@content = {
 <div class="ink-grid">
   <div class="column-group">
     <div id="side" class="large-30 column">
@@ -11,3 +13,10 @@
   </div>
 </div>
 }
+
+@jquery = {
+  initMap(@lat, @lng);
+  adjustHeight();
+}
+
+@main("Trending Venues", true)(content, jquery)

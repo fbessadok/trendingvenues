@@ -29,10 +29,10 @@ function deleteMarkers() {
   markers = [];
 }
 
-function initMap() {
+function initMap(lat, lng) {
   var myOptions = {
-    center: new google.maps.LatLng(37.789404, -122.401042), // TypeSafe coordinate in San Francisco
-    zoom: 14,
+    center: new google.maps.LatLng(lat, lng),
+    zoom: 13,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     mapTypeControl: true,
     scaleControl: true,
@@ -44,7 +44,7 @@ function initMap() {
   
   map = new google.maps.Map(document.getElementById('map'), myOptions);
   
-  var center = new google.maps.LatLng(37.789404, -122.401042);
+  var center = new google.maps.LatLng(lat, lng);
   
   // marker always on top of the others
   addMarker(center, '', cross, google.maps.Marker.MAX_ZINDEX + 1);

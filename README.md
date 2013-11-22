@@ -14,6 +14,7 @@ Trending Venues is built on top of
 * [Less CSS](http://lesscss.org/) (Included in Play Framework)
 * [Google Maps API v3](https://developers.google.com/maps/documentation/javascript/)
 * [jQuery 1.9.0](http://jquery.com/)
+* [FreeGeoIP](http://freegeoip.net/)
 
 # Live Demo
 
